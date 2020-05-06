@@ -1,0 +1,8 @@
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\install.sh
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\module.yaml
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\uninstall.sh
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\packages\meta.json
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\ant-module.conf
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\geturl.sh
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\module.yaml
+E:\AllProject\MyProject\Upatch\file1\ant-module-discovery\packages\remote-discovery@2.7.3-20200211110425.tar.gz
