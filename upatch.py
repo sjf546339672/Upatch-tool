@@ -3,7 +3,8 @@ import tarfile
 import os
 import re
 
-package = r"E:\AllProject\MyProject\Upatch\UYUN-Ant.tar.gz"
+package = os.path.join(os.getcwd(), 'UYUN-Ant.tar.gz')
+print(package)
 regex = re.compile("[\s\S]*.gz$")
 list_path = []
 
@@ -25,11 +26,7 @@ def all_file_path(path):
     for root, folders, files in os.walk(path):
         for file in files:
             file_path = os.path.join(root, file)
-            if regex.findall(file_path):
-                path = decompresession(file_path)
-                all_file_path(path)
-            else:
-                list_path.append(file_path)
+            list_path.append(file_path)
         for folder in folders:
             folder_path = os.path.join(root, folder)
             all_file_path(folder_path)
@@ -37,13 +34,8 @@ def all_file_path(path):
 
 path = decompresession(package)
 all_file_path(path)
-# for i in list(set(list_path)):
-#     print(i)
-
-
-
-
-
+for i in list(set(list_path)):
+    print(i)
 
 
 

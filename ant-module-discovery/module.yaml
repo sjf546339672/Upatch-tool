@@ -1,0 +1,80 @@
+# 模块描述文件
+# 各产品的模块须遵守平台模块化规范
+# 非自研的模块（如DB、中间件等）需在安装脚本同级追加 module.yaml 文件。
+
+# 产品名称
+product: "Ant-Module"
+
+# 模块名称
+# 命名格式：产品名称-模块名称
+# 安装路径：/opt + /产品线 + /产品名称 + /模块名称  （非自研模块安装至/opt根目录）
+#           /opt/uyun/platform/notify            √
+#           /opt/uyun/platform/platform-notify   ×
+# 如果模块包的名称层级为3，如：platform-store-fs，则安装路径为
+#           /opt/uyun/platform/store-fs
+name: ant-module-discovery
+
+# 版本信息，与产品版本保持一致
+# 命名规则参考：https://git.uyunsoft.cn/earth/sdk/blob/master/devbook/platform/omp/markdown/patch.md
+version: 2.0.16.41
+
+# R14新加
+# 原始版本（可选），一般开源组件才会配置此属性。因为考虑到版本的兼容性，开源组件的版本会按上述
+# version的规范要求进行重命名，ori_version主要是用来做回溯用的，以便查看开源组件的真是版本
+#ori_version: 2.7.0
+
+# 模块描述信息，需支持国际化，中文默认放在前面
+description:
+  - 本地发现和远程发现模块仓库
+  - remote discovery adn local discovery module repo
+
+# 依赖信息，该应用依赖的其他模块，包括DB、中间件等（可选）
+dependencies:
+  - module: platform-disconf
+    version: 2.0.0.0
+  - module: ant-module-agent
+    version: 2.0.16.40
+
+# 当前支持 [main, compute, normal] 三个枚举值
+# main：产品主模块，运维管理平台将以此模块作为安装切点进行依赖分析并完成所在产品的安装，每个产品只有一个main模块，一般为nginx或web前端
+# compute：计算模块
+# normal：常规模块
+type: normal
+
+# 是否支持扩容，默认为true（可选）
+scalable: false
+
+# 模块支持的操作(可选项)， 默认支持 start, stop, upgrade, uninstall, download_log
+support_opts: uninstall
+
+# 模块节点数要求（可选），当前主要支持如下三种表达式
+# N = 1        必须为单节点
+# N < 3        节点数不超过3
+# (N % 2) = 1  节点数必须为奇数
+# 其中 N 为占位符
+cluster_minimum: "N == 1"
+
+# R14新加
+# 监控采集URL，格式： http:port/context
+#collect_url: http:port/agent/mon
+
+# 模块安装命令
+installation:
+  install:
+    cmd: install.sh
+# 可执行命令，建议放在安装目录下的bin文件夹中，不建议使用systemctl命令
+commands:
+  exec_uninstall: "sh $uyun-root-dir/uyun/ant-module/discovery/uninstall.sh all"
+  #exec_start: "echo 'No need to start'"
+  #exec_stop: "echo 'No need to stop'"
+  #exec_status: "echo 'No status'"
+  exec_status: "ls $uyun-root-dir/uyun/ant-module/discovery"
+
+# 运行参数
+runtime_params:
+  # cpu核数
+  cpu: 1
+  # 最大运行内存（M）
+  mem: 1
+  # 所需磁盘空间（G）
+  disk: 2
