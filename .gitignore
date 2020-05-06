@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 *.gz
+ant-module-discovery
 # Distribution / packaging
 .Python
 build/
