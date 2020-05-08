@@ -23,8 +23,8 @@ import shutil
 import filecmp
 from docopt import docopt
 
-# old_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Ant.tar.gz'
-# new_package_path = r'E:\AllProject\MyProject\Upatch-tool\uyun-ant\UYUN-Ant.tar.gz'
+# old_package_path = r'E:\AllProject\MyProject\Upatch-tool\old-ant-uyun\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
+# new_package_path = r'E:\AllProject\MyProject\Upatch-tool\new-ant-uyun\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
 
 regex = re.compile("[\s\S]*.gz$")
 

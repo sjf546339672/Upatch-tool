@@ -8,6 +8,8 @@ __pycache__/
 *.gz
 *ant-module-discovery
 *discovery
+old_package_path/*
+new_package_path/*
 # Distribution / packaging
 .Python
 build/
@@ -129,3 +131,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.gz
+*.tar.gz
