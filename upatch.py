@@ -1,20 +1,20 @@
 # coding: utf-8
 
-"""
-Usage:
-  upatch.py upatch <old_package_path> <new_package_path>
-  upatch.py (-h | --help)
-  upatch.py (-v | --version)
-
-Arguments:
-  suffix_name name suffix
-  names       many names
-
-Options:
-  -h --help            Show this screen.
-  -v --version         Show version.
-
-"""
+# """
+# Usage:
+#   upatch.py upatch <old_package_path> <new_package_path>
+#   upatch.py (-h | --help)
+#   upatch.py (-v | --version)
+#
+# Arguments:
+#   suffix_name name suffix
+#   names       many names
+#
+# Options:
+#   -h --help            Show this screen.
+#   -v --version         Show version.
+#
+# """
 
 import tarfile
 import os
@@ -23,8 +23,8 @@ import shutil
 import filecmp
 from docopt import docopt
 
-# old_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Ant.tar.gz'
-# new_package_path = r'E:\AllProject\MyProject\Upatch-tool\uyun-ant\UYUN-Ant.tar.gz'
+old_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
+new_package_path = r'E:\AllProject\MyProject\Upatch-tool\uyun-ant\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
 
 regex = re.compile("[\s\S]*.gz$")
 
@@ -88,19 +88,20 @@ def deal_file(old_package_path, new_package_path):
     deal_diff_file(dcmp)
 
 
-def main():
-    args = docopt(__doc__, version='0.0.1')
-    old_package_path = args['<old_package_path>']
-    new_package_path = args['<new_package_path>']
-    print("============================")
-    print(old_package_path, type(old_package_path))
-    print(new_package_path, type(new_package_path))
-    print("============================")
-    deal_file(old_package_path, new_package_path)
-
-
-if __name__ == '__main__':
-    main()
+deal_file(old_package_path, new_package_path)
+# def main():
+#     args = docopt(__doc__, version='0.0.1')
+#     old_package_path = args['<old_package_path>']
+#     new_package_path = args['<new_package_path>']
+#     print("============================")
+#     print(old_package_path, type(old_package_path))
+#     print(new_package_path, type(new_package_path))
+#     print("============================")
+#     deal_file(old_package_path, new_package_path)
+#
+#
+# if __name__ == '__main__':
+#     main()
 
 
 
