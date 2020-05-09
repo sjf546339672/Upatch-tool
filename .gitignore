@@ -8,8 +8,6 @@ __pycache__/
 *.gz
 *ant-module-discovery
 *discovery
-old_package_path/*
-new_package_path/*
 # Distribution / packaging
 .Python
 build/
@@ -29,6 +27,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.gz
 MANIFEST
 
 # PyInstaller
@@ -132,5 +131,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-*.gz
-*.tar.gz
+
