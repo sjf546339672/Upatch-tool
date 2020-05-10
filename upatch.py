@@ -5,14 +5,14 @@ import os
 import re
 import shutil
 import filecmp
-
 import datetime
-
 import yaml
 from docopt import docopt
 
-old_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
-new_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
+# old_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
+# new_package_path = r'E:\AllProject\MyProject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
+old_package_path = r'F:\Myproject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
+new_package_path = r'F:\Myproject\Upatch-tool\UYUN-Platform-Ant-V2.0.R16.41-all.tar.gz'
 regex = re.compile("[\s\S]*.gz$")
 
 
@@ -163,7 +163,7 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
 
 
 def patch_package(patch_path):
-    print(patch_path)
+    print("-------------", patch_path)
 
 
 def deal_file(old_package_path, new_package_path):

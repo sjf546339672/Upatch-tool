@@ -3,15 +3,16 @@ import shutil
 import tarfile
 from filecmp import dircmp
 import os
-
 import datetime
-
 import re
+import os
 import yaml
 import sys
 
-old_path = r'E:\AllProject\MyProject\Upatch-tool\old-ant-uyun'
-new_path = r'E:\AllProject\MyProject\Upatch-tool\new-ant-uyun'
+# old_path = r'E:\AllProject\MyProject\Upatch-tool\old-ant-uyun'
+# new_path = r'E:\AllProject\MyProject\Upatch-tool\new-ant-uyun'
+old_path = r'F:\Myproject\Upatch-tool\old-ant-uyun'
+new_path = r'F:\Myproject\Upatch-tool\new-ant-uyun'
 dcmp = dircmp(old_path, new_path)
 
 
@@ -129,37 +130,33 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
     fp.close()
 
 
-# 一次性打包整个根目录。空子目录会被打包。
-# 如果只打包不压缩，将"w:gz"参数改为"w:"或"w"即可。
-def make_targz(output_filename, source_dir):
-    with tarfile.open(output_filename, "w:gz") as tar:
-        tar.add(source_dir, arcname=os.path.basename(source_dir))
+def patch_package(path_name, patch_path):
+    # for i in os.listdir(patch_path):
+    #     folder_path = os.path.join(patch_path, i)
+    #     if os.path.isdir(folder_path):
+    #         dabao("(%s).tar.gz"%i, folder_path)
+            # shutil.rmtree(folder_path)
+    dabao('www.tar.gz', patch_path)
 
 
-# 逐个添加文件打包，未打包空子目录。可过滤文件。
-# 如果只打包不压缩，将"w:gz"参数改为"w:"或"w"即可。
-def make_targz_one_by_one(output_filename, source_dir):
-    tar = tarfile.open(output_filename, "w:gz")
-    for root, dir, files in os.walk(source_dir):
-        for file in files:
-            pathfile = os.path.join(root, file)
-            tar.add(pathfile)
-    tar.close()
-
-
-def patch_package(output_filename, source_dir):
-    with tarfile.open(output_filename, "w:gz") as tar:
-        tar.add(source_dir, arcname=os.path.basename(source_dir))
+def dabao(output_filename, source_dir):
+    try:
+        with tarfile.open(output_filename, "w:gz") as tar:
+            tar.add(source_dir, arcname=os.path.basename(source_dir))
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 
 def main():
     patch_path = os.path.join(os.getcwd(), 'patch')
     if not os.path.isdir(patch_path):
         os.mkdir(patch_path)
-    # patch_path = os.path.join(os.getcwd(), 'patch')
-    # # module_name = 'platform-ant-dispatcher'
-    # # deal_upatch(patch_path, module_name)
-    #
+    patch_path = os.path.join(os.getcwd(), 'patch')
+    # module_name = 'platform-ant-dispatcher'
+    # deal_upatch(patch_path, module_name)
+
     # new_ant_uyun_path = os.path.join(os.getcwd(), 'new-ant-uyun')
     # if not new_ant_uyun_path:
     #     os.mkdir(new_ant_uyun_path)
@@ -167,7 +164,8 @@ def main():
     # if not new_ant_uyun_path:
     #     os.mkdir(old_ant_uyun_path)
     # deal_diff_file(dcmp, new_ant_uyun_path, patch_path, old_ant_uyun_path)
-    patch_package('dsdasda.tar.gz', patch_path)
+    path_name = os.path.basename(patch_path)
+    patch_package(path_name, patch_path)
 
 
 if __name__ == '__main__':
