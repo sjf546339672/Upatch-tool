@@ -94,12 +94,13 @@ def re_version(filename):
 
 
 def re_module_yaml_path(base_path, path):
+    """通过正则匹配出module.yaml文件路径"""
     list1 = []
     for i in base_path.split("\\"):
         list1.append(i)
     test = "\\\\".join(list1)
 
-    pattern = r"^{}\\[\s\S]*\\".format(test)
+    pattern = r"^{}\\[\s\S]*?\\".format(test)
     pattern_result = re.findall(pattern, path)
     if pattern_result != []:
         list2 = []
@@ -115,8 +116,8 @@ def re_module_yaml_path(base_path, path):
 
 
 def deal_module_yaml_folder(old_ant_uyun_path, dcmp):
-    module_yaml_folder = re_module_yaml_path(old_ant_uyun_path,
-                                             os.path.abspath(dcmp.left))
+    """获取模块名和旧包yaml中的版本号"""
+    module_yaml_folder = re_module_yaml_path(old_ant_uyun_path, os.path.abspath(dcmp.left))
     old_module_yaml_path = os.path.join(module_yaml_folder, 'module.yaml')
     current_module_version = read_yaml(old_module_yaml_path)[0]
     new_module_yaml_path = search_module_yaml(dcmp.right, "module.yaml")
@@ -124,42 +125,25 @@ def deal_module_yaml_folder(old_ant_uyun_path, dcmp):
     return module_name, current_module_version
 
 
-def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
-                   patched_module_version):
-    """旧包文件和新包文件进行比较"""
-    if dcmp.right_only:
-        for i in dcmp.right_only:
-            whole_path = os.path.join(os.path.abspath(dcmp.right), i)
-            file_path = dcmp.right.split(new_ant_uyun_path)[1]
-            splice_path = patch_path + file_path
-            create_dir(splice_path)
-            shutil.copy(whole_path, splice_path)
+def patch_package(output_filename, source_dir):
+    """对文件夹进行打包"""
+    try:
+        with tarfile.open(output_filename + '.tar.gz', "w:gz") as tar:
+            tar.add(source_dir, arcname=os.path.basename(source_dir))
+        # shutil.rmtree(source_dir)
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
-            try:
-                deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
-                deal_upatch(patch_path, deal_result[0], deal_result[1],
-                            patched_module_version)
-            except Exception as e:
-                print(e)
 
-    for name in dcmp.diff_files:
-        error_info = "diff_file {} found in {} and {}".format(name, dcmp.left, dcmp.right)
-        if error_info:
-            new_file = os.path.join(dcmp.right, name)
-            file_path = dcmp.right.split(new_ant_uyun_path)[1]
-            splice_path = patch_path+file_path
-            create_dir(splice_path)
-            shutil.copy(new_file, splice_path)
-
-            try:
-                deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
-                deal_upatch(patch_path, deal_result[0], deal_result[1],
-                            patched_module_version)
-            except Exception as e:
-                print(e)
-
-    for sub_dcmp in dcmp.subdirs.values():
-        deal_diff_file(sub_dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path, patched_module_version)
+def deal_win_path(path):
+    """处理\\"""
+    if r'\\' in path:
+        result = path.replace(r"\\", r"\\\\")
+    else:
+        result = path
+    return result
 
 
 def deal_upatch(patch_path, module_name, current_module_version, patched_module_version):
@@ -204,30 +188,49 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
     fp.close()
 
 
-def deal_ignore(source_dir, ignore_list):
-    for root, folders, files in os.walk(source_dir):
-        for file in files:
-            for i in ignore_list:
-                if i in os.path.join(root, file):
-                    os.remove(os.path.join(root, file))
-        for folder in folders:
-            for i in ignore_list:
-                if i in os.path.join(root, folder):
-                    shutil.rmtree(os.path.join(root, folder))
+def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
+                   patched_module_version, ignore_maps):
+    """旧包文件和新包文件进行比较"""
+    relative_path = dcmp.right.split(new_ant_uyun_path)
+    relative_path_result = deal_win_path(relative_path[1][1:])
+
+    if r""+relative_path_result in ignore_maps:
+        dcmp.ignore = deal_win_path(ignore_maps[relative_path_result])
+
+    for i in dcmp.right_only:
+        whole_path = os.path.join(os.path.abspath(dcmp.right), i)
+        file_path = dcmp.right.split(new_ant_uyun_path)[1]
+        splice_path = patch_path + file_path
+        create_dir(splice_path)
+        shutil.copy(whole_path, splice_path)
+
+        try:
+            deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
+            deal_upatch(patch_path, deal_result[0], deal_result[1],
+                        patched_module_version)
+        except Exception as e:
+            print(e)
+
+    for name in dcmp.diff_files:
+        new_file = os.path.join(dcmp.right, name)
+        file_path = dcmp.right.split(new_ant_uyun_path)[1]
+        splice_path = patch_path + file_path
+        create_dir(splice_path)
+        shutil.copy(new_file, splice_path)
+
+        try:
+            deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
+            deal_upatch(patch_path, deal_result[0], deal_result[1],
+                        patched_module_version)
+        except Exception as e:
+            print(e)
+
+    for sub_dcmp in dcmp.subdirs.values():
+        deal_diff_file(sub_dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path, patched_module_version, ignore_maps)
 
 
-def patch_package(output_filename, source_dir):
-    try:
-        with tarfile.open(output_filename + '.tar.gz', "w:gz") as tar:
-            tar.add(source_dir, arcname=os.path.basename(source_dir))
-        shutil.rmtree(source_dir)
-        return True
-    except Exception as e:
-        print(e)
-        return False
-
-
-def deal_file(old_package_path, new_package_path, new_version, ignore_list):
+def deal_file(old_package_path, new_package_path, new_version, ignore_list, ignore_maps):
+    """获取处理压缩包"""
     patch_path = os.path.join(os.getcwd(), 'patch')
     if not os.path.exists(patch_path):
         os.mkdir(patch_path)
@@ -246,9 +249,7 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_list):
 
         dcmp = filecmp.dircmp(old_ant_uyun_path, new_ant_uyun_path)
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
-                       patch_path, new_version)
-
-        deal_ignore(patch_path, ignore_list)
+                       patch_path, new_version, ignore_maps)
         patch_package('patch', patch_path)
     except Exception as e:
         pass
@@ -261,7 +262,11 @@ def main():
     output = args['<output>']
     new_version = re_version(output)
     ignore_list = args['<ignore>']
-    deal_file(old_package_path, new_package_path, new_version, ignore_list)
+    ignore_maps = {}
+    for ignore in ignore_list:
+        ignore_maps[ignore.split(os.path.basename(ignore))[0][:-1]] = [
+            os.path.basename(ignore)]
+    deal_file(old_package_path, new_package_path, new_version, ignore_list, ignore_maps)
 
 
 if __name__ == '__main__':
