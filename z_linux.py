@@ -1,25 +1,26 @@
 # coding: utf-8
 """
 Usage:
-  upatch.py <old_package_path> <new_package_path> -o <output>  [-i <ignore> <ignore> <ignore> <ignore>]
+  upatch.py <old_package_path> <new_package_path> -o <output>  [-i <ignore> <ignore>]
   upatch.py (-h | --help)
   upatch.py (-v | --version)
-
 Options:
   -h, --help             显示帮助信息
   -i, --ignore  忽略目录或文件（可选，忽略的目录或文件不会放入补丁包中）
 """
-import os
-import re
-import yaml
-import shutil
 import filecmp
 import tarfile
+import os
+import re
+import shutil
 import datetime
 import platform
+import yaml
+import time
 from docopt import docopt
 
 regex = re.compile("[\s\S]*.gz$")
+host_platform = platform.system().lower()
 
 
 def untar(path, save_path):
@@ -75,15 +76,13 @@ def re_version(filename):
 
 
 def re_module_yaml_path(base_path, path):
-    """通过正则匹配出module.yaml文件路径"""
-    if base_path == os.path.dirname(path):
+    """获取module.yaml文件夹"""
+    split_path = os.path.split(path)
+    if base_path == split_path[0]:
         old_path = path
     else:
         data = path.split(base_path)
-        if platform.version().lower() == 'windows':
-            data_list = data[1].split('\\')
-        else:
-            data_list = data[1].split('/')
+        data_list = data[1].split('/')
         old_path = os.path.join(base_path, data_list[1])
     return old_path
 
@@ -95,6 +94,48 @@ def deal_module_yaml_folder(old_ant_uyun_path, dcmp):
     current_module_version = read_yaml(old_module_yaml_path)[0]
     module_name = read_yaml(old_module_yaml_path)[1]
     return module_name, current_module_version
+
+
+def deal_upatch(patch_path, module_name, current_module_version, patched_module_version):
+    """向patch.yaml文件中添加数据"""
+    yaml_path = os.path.join(patch_path, 'patch.yaml')
+    year = datetime.datetime.now().year
+    month = datetime.datetime.now().month
+    day = datetime.datetime.now().day
+
+    if not os.path.exists(yaml_path):
+        fd = open(yaml_path, mode="w", encoding="utf-8")
+        fd.close()
+    fp = open(yaml_path, encoding='utf-8')
+    yarn_content = fp.read()
+    res = yaml.load(yarn_content)
+    if not res:
+        fw = open(yaml_path, 'w', encoding='utf-8')
+        data = {
+            'release_time': datetime.date(year, month, day),
+            'target_modules': [
+                {'a-name': module_name,
+                 'current_module_version': current_module_version,
+                 'patched_module_version': patched_module_version}
+            ],
+        }
+        yaml.dump(data, fw)
+    else:
+        list1 = []
+        for i in res['target_modules']:
+            list1.append(i['a-name'])
+        fn = open(yaml_path, 'w', encoding='utf-8')
+        if module_name not in list1:
+            fn = open(yaml_path, 'w', encoding='utf-8')
+            res['release_time'] = datetime.date(year, month, day)
+            res['target_modules'].append(
+                {'a-name': module_name,
+                 'current_module_version': current_module_version,
+                 'patched_module_version': patched_module_version
+                 }
+            )
+        yaml.dump(res, fn)
+    fp.close()
 
 
 def patch_package(output_filename, source_dir):
@@ -127,75 +168,32 @@ def get_all_files(package_path):
     return ant_uyun_path
 
 
-def deal_upatch(patch_path, module_name, current_module_version, patched_module_version):
-    """向patch.yaml文件中添加数据"""
-    yaml_path = os.path.join(patch_path, 'patch.yaml')
-    year = datetime.datetime.now().year
-    month = datetime.datetime.now().month
-    day = datetime.datetime.now().day
-
-    if not os.path.exists(yaml_path):
-        fd = open(yaml_path, mode="w", encoding="utf-8")
-        fd.close()
-    fp = open(yaml_path, encoding='utf-8')
-    yarn_content = fp.read()
-    res = yaml.load(yarn_content)
-    if not res:
-        fw = open(yaml_path, 'w', encoding='utf-8')
-        data = {
-            'release_time': datetime.date(year, month, day),
-            'target_modules': [
-                {'a-name': module_name,
-                 'current_module_version': current_module_version,
-                 'patched_module_version': patched_module_version}
-            ],
-        }
-        yaml.dump(data, fw)
-    else:
-        list1 = []
-        for i in res['target_modules']:
-            list1.append(i['a-name'])
-        fn = open(yaml_path, 'w', encoding='utf-8')
-        if not module_name in list1:
-            fn = open(yaml_path, 'w', encoding='utf-8')
-            res['release_time'] = datetime.date(year, month, day)
-            res['target_modules'].append(
-                {'a-name': module_name,
-                 'current_module_version': current_module_version,
-                 'patched_module_version': patched_module_version
-                 }
-            )
-        yaml.dump(res, fn)
-    fp.close()
-
-
 def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
                    patched_module_version, ignore_maps):
     """旧包文件和新包文件进行比较"""
     relative_path = dcmp.right.split(new_ant_uyun_path)
     relative_path_result = relative_path[1][1:]
-
     if relative_path_result in ignore_maps:
-        print(relative_path_result)
         dcmp.ignore = ignore_maps[relative_path_result]
 
-    file_name_list = []
-    file_name_list += dcmp.diff_files
-    file_name_list += dcmp.right_only
-    for i in file_name_list:
-        whole_path = os.path.join(dcmp.right, i)
-        file_path = os.path.join(patch_path, relative_path[1][1:])
-        create_dir(file_path)
-        shutil.copy(whole_path, file_path)
-        try:
-            deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
-            deal_upatch(patch_path, deal_result[0], deal_result[1], patched_module_version)
-        except Exception as e:
-            print(e)
+    filename_list = []
+    filename_list += dcmp.diff_files
+    filename_list += dcmp.right_only
+    if filename_list != []:
+        for i in filename_list:
+            whole_path = os.path.join(dcmp.right, i)
+            file_path = dcmp.right.split(new_ant_uyun_path)[1][1:]
+            splice_path = os.path.join(patch_path, file_path)
+            create_dir(splice_path)
+            shutil.copy(whole_path, splice_path)
+            try:
+                deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
+                deal_upatch(patch_path, deal_result[0], deal_result[1], patched_module_version)
+            except Exception as e:
+                print(e)
 
     for sub_dcmp in dcmp.subdirs.values():
-        deal_diff_file(sub_dcmp, new_ant_uyun_path, old_ant_uyun_path,
-                       patch_path, patched_module_version, ignore_maps)
+        deal_diff_file(sub_dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path, patched_module_version, ignore_maps)
 
 
 def deal_file(old_package_path, new_package_path, new_version, ignore_maps):
@@ -206,25 +204,10 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_maps):
     else:
         shutil.rmtree(patch_path)
         os.mkdir(patch_path)
-    # try:
-    #     old_ant_uyun_path = get_all_files(old_package_path)
-    #     new_ant_uyun_path = get_all_files(new_package_path)
-    #
-    #     dcmp = filecmp.dircmp(old_ant_uyun_path, new_ant_uyun_path)
-    #     deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
-    #                    patch_path, new_version, ignore_maps)
-    #     patch_package('patch', patch_path)
-    # except Exception as e:
-    #     print(e)
+
     try:
-        untar(old_package_path, os.getcwd())
-        old_ant_uyun_path = os.path.join(os.getcwd(), 'old_uyun')
-        all_file_path(old_ant_uyun_path)
-
-        untar(new_package_path, os.getcwd())
-        new_ant_uyun_path = os.path.join(os.getcwd(), 'new_uyun')
-        all_file_path(new_ant_uyun_path)
-
+        old_ant_uyun_path = get_all_files(old_package_path)
+        new_ant_uyun_path = get_all_files(new_package_path)
         dcmp = filecmp.dircmp(old_ant_uyun_path, new_ant_uyun_path)
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
@@ -252,3 +235,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
