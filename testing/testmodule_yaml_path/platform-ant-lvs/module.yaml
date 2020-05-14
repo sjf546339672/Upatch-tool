@@ -1,0 +1,76 @@
+# Module config YAML
+# 各产品的模块须遵守平台模块化规范，非自研的模块（如DB、中间件等）需在安装脚本同级追加 module.yaml 文件
+
+# 产品名称
+product: Platform
+
+# 2、服务名称建议与模块名称保持一致
+name: platform-ant-lvs
+
+# 版本信息，与产品版本保持一致
+version: 2.0.16.41
+
+# 是否定制过（0：否，1：是）
+is_customized: 0
+
+# 模块说明信息
+description:
+  - Ant 负载均衡接入
+  - Ant lvs service
+
+# 当前支持 [main, compute, normal] 三个枚举值
+# main：产品主模块，运维管理平台将以此模块作为安装切点进行依赖分析并完成所在产品的安装，每个产品只有一个main模块，一般为nginx或web前端
+# compute：计算模块
+# normal：常规模块
+type: normal
+
+# 日志文件名称，支持shell通配符，多个以 , 分隔
+log_file_name: "error*.log*, access*.log*"
+
+# 需要关闭的防火墙端口
+#firewall_port: 7583
+
+# 模块安装命令
+installation:
+    install:
+        cmd: install.sh
+        opts:
+        - opt: vip
+          desc:
+            - 虚拟IP
+            - virtual IP
+        - opt: lvs-mode2
+          desc:
+            - lvs模式(DR/TUN)
+            - lvs mode(DR/TUN)
+        - opt: port2
+          desc: 
+            - Ant-Nginx服务对外端口
+            - port
+          val: 7583
+        - opt: platform-ant-nginx
+          desc: ant-nginx服务地址
+          context: "$platform-ant-nginx"
+
+# 可执行命令，建议放在安装目录下的bin文件夹中，不建议使用systemctl命令
+commands:
+    exec_start: $uyun-root-dir/uyun/platform/ant-lvs/bin/lvs.sh start
+    exec_stop:  $uyun-root-dir/uyun/platform/ant-lvs/bin/lvs.sh stop
+    exec_restart: $uyun-root-dir/uyun/platform/ant-lvs/bin/lvs.sh restart
+    exec_status: $uyun-root-dir/uyun/platform/ant-lvs/bin/lvs.sh status
+    exec_uninstall: $uyun-root-dir/uyun/platform/ant-lvs/bin/lvs.sh uninstall
+
+# 运行参数（预留）
+runtime_params:
+    # cpu核数
+    cpu: 1
+    # 最大运行内存（unit: M）
+    mem: 10
+    # 所需磁盘空间（unit: G）
+    disk: 1
+
+dependencies:
+    - module: platform-disconf
+      version: 2.0.0.0
+    - module: platform-ant-nginx
+      version: 2.0.16.0

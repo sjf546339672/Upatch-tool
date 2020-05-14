@@ -2,3 +2,11 @@ pip install --ignore-installed PyYAML
 from ruamel import yaml
 
 python upatch.py C:\Users\jife\Desktop\uyun\old_package_path.tar.gz C:\Users\jife\Desktop\uyun\new_package_path.tar.gz -o UYUN-Platform-Ant-V2.0.R18.47-all.tar.gz -i platform-ant-dispatcher\uninstall.sh  platform-ant-fs\conf\disconf
+python upatch.py C:\Users\jife\Desktop\discovery-server.tar.gz  C:\Users\jife\Desktop\discovery-server-2.0.R16.42.tar.gz -o UYUN-Platform-Ant-V2.0.R16.42-all.tar.gz
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+release_time: 2020-05-14
+target_modules:
+- a-name: platform-ant-lxl
+  current_module_version: 2.0.3.12
+  patched_module_version: 2.0.5.21

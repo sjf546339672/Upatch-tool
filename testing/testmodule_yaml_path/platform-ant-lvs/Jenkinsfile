@@ -1,0 +1,44 @@
+node {
+  withEnv(["PACKAGE_DIR=${ARTIFACT_DIR}/${MODULE_NAME}",
+           "PACKAGE_TGZ_NAME=${MODULE_NAME}-${MODULE_VERSION}.tar.gz"]) {
+
+    stage("Init") {
+      // 清理工作空间
+      cleanWs()
+
+      // 拉取最新代码
+      checkout scm
+    }
+
+    stage('Package') {
+
+      sh '''
+        mkdir -p ${PACKAGE_DIR}
+        cp -R bin ${PACKAGE_DIR}
+        cp -R keepalived ${PACKAGE_DIR}
+        cp install.sh ${PACKAGE_DIR}
+        cp enable_port.sh ${PACKAGE_DIR}
+        cp Jenkinsfile ${PACKAGE_DIR}
+        cp jq ${PACKAGE_DIR}
+        cp module.yaml ${PACKAGE_DIR}
+      '''
+
+      sh '''
+        chmod 751 ${PACKAGE_DIR}/bin/lvs.sh
+        chmod 751 ${PACKAGE_DIR}/jq
+      '''
+
+      // 压缩成包
+      dir("${ARTIFACT_DIR}") {
+
+        sh '''
+          tar -czvf ${PACKAGE_TGZ_NAME} ${MODULE_NAME}
+          rm -rf ${PACKAGE_DIR}
+        '''
+
+        // 让Jenkins可以下载到这个压缩包
+        archiveArtifacts "${PACKAGE_TGZ_NAME}"
+      }
+    }
+  }
+}

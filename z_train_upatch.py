@@ -181,8 +181,7 @@ def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
     if filename_list != []:
         for i in filename_list:
             whole_path = os.path.join(dcmp.right, i)
-            file_path = dcmp.right.split(new_ant_uyun_path)[1][1:]
-            splice_path = os.path.join(patch_path, file_path)
+            splice_path = os.path.join(patch_path, relative_path_result)
             create_dir(splice_path)
             shutil.copy(whole_path, splice_path)
             try:
