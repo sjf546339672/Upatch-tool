@@ -2,75 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b66310-df77-4360-8195-33a50114e7f5" name="Default" comment="cls">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/jq" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/bin/genhash" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/sbin/keepalived" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/pytest.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testallfilepath/test/file2/uninstall.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testallfilepath/test/file2/util.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testallfilepath/test/file3/uninstall.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testdealmoduleyamlfolder/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testdealupatch/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testdealupatch/patch.yaml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/Jenkinsfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/bin/lvs.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/enable_port.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/keepalived.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/client.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/dh1024.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.HTTP_GET.port" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.IPv6" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.SMTP_CHECK" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.SSL_GET" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.fwmark" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.inhibit" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.misc_check" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.misc_check_arg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.quorum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.sample" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.status_code" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.track_interface" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.virtual_server_group" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.virtualhost" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.localcheck" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.lvs_syncd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.routes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.rules" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.scripts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.static_ipaddress" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/keepalived.conf.vrrp.sync" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/root.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/keepalived/samples/sample.misccheck.smbcheck.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/etc/sysconfig/keepalived" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/share/man/man1/genhash.1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/share/man/man5/keepalived.conf.5" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived/share/man/man8/keepalived.8" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/keepalived/keepalived_ant_lvs.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testmodule_yaml_path/platform-ant-lvs/module.yaml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testpatchpackage/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testpatchpackage/file2/uninstall.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testpatchpackage/file2/util.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testpatchpackage/files3/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testpatchpackage/files3/aaaa.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testreadyaml/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testreadyaml/files/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testreadyaml/files/file2/uninstall.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testreadyaml/files/file2/util.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testreadyaml/files/file3/uninstall.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/tests.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/testuntar/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Upatch-tool.iml" afterPath="$PROJECT_DIR$/.idea/Upatch-tool.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upatch1.0.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upatch.py" afterPath="$PROJECT_DIR$/upatch.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z_linux.py" afterPath="$PROJECT_DIR$/z_linux.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/z_train_upatch.py" afterPath="$PROJECT_DIR$/z_train_upatch.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zz.py" afterPath="$PROJECT_DIR$/zz.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/知识点" afterPath="$PROJECT_DIR$/知识点" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/testing.py" afterPath="$PROJECT_DIR$/testing/__init__.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,10 +23,10 @@
     <SUITE FILE_PATH="coverage/Upatch_tool$test.coverage" NAME="test Coverage Results" MODIFIED="1588925981787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
     <SUITE FILE_PATH="coverage/Upatch_tool$z_train_upatch.coverage" NAME="z_train_upatch Coverage Results" MODIFIED="1588939440884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Upatch_tool$train_docopt.coverage" NAME="train_docopt Coverage Results" MODIFIED="1589184056676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Upatch_tool$upatch.coverage" NAME="upatch Coverage Results" MODIFIED="1589350038291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Upatch_tool$upatch.coverage" NAME="upatch Coverage Results" MODIFIED="1589535966209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Upatch_tool$11.coverage" NAME="11 Coverage Results" MODIFIED="1589336069511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Upatch_tool$filecmp.coverage" NAME="filecmp Coverage Results" MODIFIED="1588906036183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:/python36/Lib" />
-    <SUITE FILE_PATH="coverage/Upatch_tool$zz.coverage" NAME="zz Coverage Results" MODIFIED="1589466782595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Upatch_tool$zz.coverage" NAME="zz Coverage Results" MODIFIED="1589504064370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Upatch_tool$train.coverage" NAME="train Coverage Results" MODIFIED="1588831100965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
     <SUITE FILE_PATH="coverage/Upatch_tool$class_upatch.coverage" NAME="class_upatch Coverage Results" MODIFIED="1588921413451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Upatch_tool$q.coverage" NAME="q Coverage Results" MODIFIED="1589160957857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -110,8 +48,8 @@
       <file leaf-file-name="upatch.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/upatch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="238" column="0" lean-forward="true" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+            <state relative-caret-position="-44">
+              <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
                 <element signature="e#277#286#0" expanded="true" />
               </folding>
@@ -119,11 +57,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="upatch1.0.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/upatch1.0.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1365">
+              <caret line="239" column="0" lean-forward="false" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="知识点" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/知识点">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="196" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="zz.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+            <state relative-caret-position="0">
+              <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -177,9 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="E:/python36/djando-env/Lib/site-packages/docopt.py" />
-        <option value="$PROJECT_DIR$/Test/test.py" />
-        <option value="$PROJECT_DIR$/uyun-ant/ant-module-discovery/install.sh" />
         <option value="$PROJECT_DIR$/ant-module-discovery/install.sh" />
         <option value="$PROJECT_DIR$/ant-module-discovery/packages/remote-discovery/manifest.yaml" />
         <option value="$PROJECT_DIR$/uyun-ant/ant-module-discovery/qqqq.py" />
@@ -210,7 +165,6 @@
         <option value="$USER_HOME$/Downloads/upatch(fix).py" />
         <option value="$PROJECT_DIR$/z_win_linux.py" />
         <option value="E:/python36/Lib/shutil.py" />
-        <option value="$PROJECT_DIR$/z_train_upatch.py" />
         <option value="$PROJECT_DIR$/z_linux.py" />
         <option value="$PROJECT_DIR$/testing.py" />
         <option value="$PROJECT_DIR$/testing/__init__.py" />
@@ -225,8 +179,12 @@
         <option value="$PROJECT_DIR$/testing/testpatchpackage/files3/aaaa.py" />
         <option value="$PROJECT_DIR$/testing/testdealupatch/patch.yaml.py" />
         <option value="$PROJECT_DIR$/testing/tests.py" />
-        <option value="$PROJECT_DIR$/知识点" />
+        <option value="$PROJECT_DIR$/old_discovery-server/deepscan/application/javaapp.bdp" />
+        <option value="$PROJECT_DIR$/z_train_upatch.py" />
+        <option value="$PROJECT_DIR$/upatch1.0.py" />
         <option value="$PROJECT_DIR$/zz.py" />
+        <option value="$USER_HOME$/Downloads/store_api.py" />
+        <option value="$PROJECT_DIR$/知识点" />
         <option value="$PROJECT_DIR$/upatch.py" />
       </list>
     </option>
@@ -277,7 +235,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/uyun" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/ant-uyun" />
@@ -286,19 +244,19 @@
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Uyun-python\Upatch-tool\testing\testallfilepath" />
-      <recent name="E:\Uyun-python\Upatch-tool\testing" />
-      <recent name="E:\Uyun-python\Upatch-tool\testing\TestUntar" />
-      <recent name="E:\Uyun-python\Upatch-tool" />
-      <recent name="E:\AllProject\MyProject\Upatch-tool\patch\platform-ant-dispatcher" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Uyun-python\Upatch-tool" />
       <recent name="E:\Uyun-python\Upatch-tool\testing\testallfilepath\test" />
       <recent name="E:\Uyun-python\Upatch-tool\testing\testgetuntarname" />
       <recent name="E:\Uyun-python\Upatch-tool\testing\testpatchpackage" />
       <recent name="E:\Uyun-python\Upatch-tool\testing\testmodule_yaml_path" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Uyun-python\Upatch-tool\testing\testallfilepath" />
+      <recent name="E:\Uyun-python\Upatch-tool\testing" />
+      <recent name="E:\Uyun-python\Upatch-tool\testing\TestUntar" />
+      <recent name="E:\Uyun-python\Upatch-tool" />
+      <recent name="E:\AllProject\MyProject\Upatch-tool\patch\platform-ant-dispatcher" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -313,7 +271,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.zz">
+  <component name="RunManager" selected="Python.upatch">
     <configuration name="11" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -413,9 +371,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.zz" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tests" />
-        <item index="2" class="java.lang.String" itemvalue="Python.upatch" />
+        <item index="0" class="java.lang.String" itemvalue="Python.upatch" />
+        <item index="1" class="java.lang.String" itemvalue="Python.zz" />
+        <item index="2" class="java.lang.String" itemvalue="Python.tests" />
         <item index="3" class="java.lang.String" itemvalue="Python.z_win_linux" />
         <item index="4" class="java.lang.String" itemvalue="Python.11" />
       </list>
@@ -439,16 +397,16 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3369803" sideWeight="0.50213677" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31728664" sideWeight="0.49358973" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.404814" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31728664" sideWeight="0.49358973" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46389496" sideWeight="0.49786323" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18696581" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17254274" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934355" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -472,12 +430,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/patch/platform-ant-executor/uninstall.sh" />
-    <entry file="file://$PROJECT_DIR$/new_uyun/platform-ant-fs/uninstall.sh" />
-    <entry file="file://$PROJECT_DIR$/old_uyun/platform-ant-dispatcher/uninstall.sh" />
-    <entry file="file://$PROJECT_DIR$/old_uyun/platform-ant-executor/uninstall.sh" />
-    <entry file="file://$PROJECT_DIR$/new_uyun/platform-ant-dispatcher/uninstall.sh" />
-    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/11.py" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
@@ -501,20 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/z_train_upatch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="172" column="47" lean-forward="false" selection-start-line="172" selection-start-column="47" selection-end-line="172" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/z_linux.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="184" column="71" lean-forward="false" selection-start-line="184" selection-start-column="71" selection-end-line="184" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -625,53 +563,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/old_discovery-server/module.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/知识点">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/269099107/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="3369" column="25" lean-forward="false" selection-start-line="3369" selection-start-column="25" selection-end-line="3369" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old_discovery-server/deepscan/application/javaapp.bdp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="88" lean-forward="false" selection-start-line="0" selection-start-column="88" selection-end-line="0" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/store_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="128" column="37" lean-forward="true" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_discovery-server/deepscan/application/javaapp.bdp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z_linux.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="184" column="71" lean-forward="false" selection-start-line="184" selection-start-column="71" selection-end-line="184" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z_train_upatch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/patch.tar.gz">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/store_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="38" column="59" lean-forward="false" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding>
+            <element signature="e#16#27#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old_discovery-server/module.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upatch1.0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="239" column="0" lean-forward="false" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/patch/patch.yaml">
+    <entry file="file://$PROJECT_DIR$/知识点">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
-          <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="24" />
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="196" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/upatch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="238" column="0" lean-forward="true" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+        <state relative-caret-position="-44">
+          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
             <element signature="e#277#286#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/patch/patch.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

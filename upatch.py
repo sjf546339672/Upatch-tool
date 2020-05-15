@@ -117,15 +117,10 @@ def get_untar_name(old_list, new_list):
     return new_list[0]
 
 
-def get_all_files(package_path, prefix):
-    list_files_one = os.listdir(os.getcwd())
-    untar(package_path, os.getcwd())
-    list_files_two = os.listdir(os.getcwd())
-    file_name = get_untar_name(list_files_one, list_files_two)
-    shutil.move(os.path.join(os.getcwd(), file_name), prefix+'_'+file_name)
-    ant_uyun_path = os.path.join(os.getcwd(), prefix+'_'+file_name)
-    all_file_path(ant_uyun_path)
-    return ant_uyun_path
+def get_all_files(package_path, save_path):
+    untar(package_path, save_path)
+    all_file_path(save_path)
+    return save_path
 
 
 def deal_upatch(patch_path, module_name, current_module_version, patched_module_version):
@@ -161,7 +156,7 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
             fn = open(yaml_path, 'w')
             res['release_time'] = datetime.date(year, month, day)
             res['target_modules'].append(
-                {'a-name': module_name,
+                {'name': module_name,
                  'current_module_version': current_module_version,
                  'patched_module_version': patched_module_version
                  }
@@ -197,18 +192,26 @@ def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
                        patch_path, patched_module_version, ignore_maps)
 
 
+def deal_folder(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
+    else:
+        shutil.rmtree(path)
+        os.mkdir(path)
+
+
 def deal_file(old_package_path, new_package_path, new_version, ignore_maps):
     """获取处理压缩包"""
     patch_path = os.path.join(os.getcwd(), 'patch')
-    if not os.path.exists(patch_path):
-        os.mkdir(patch_path)
-    else:
-        shutil.rmtree(patch_path)
-        os.mkdir(patch_path)
-    try:
-        old_ant_uyun_path = get_all_files(old_package_path, 'old')
-        new_ant_uyun_path = get_all_files(new_package_path, 'new')
+    old_folders = os.path.join(os.getcwd(), 'old_folders')
+    new_folders = os.path.join(os.getcwd(), 'new_folders')
+    deal_folder(patch_path)
+    deal_folder(old_folders)
+    deal_folder(new_folders)
 
+    try:
+        old_ant_uyun_path = get_all_files(old_package_path, old_folders)
+        new_ant_uyun_path = get_all_files(new_package_path, new_folders)
         dcmp = filecmp.dircmp(old_ant_uyun_path, new_ant_uyun_path)
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
