@@ -18,7 +18,6 @@ import tarfile
 import datetime
 import platform
 from docopt import docopt
-from collections import OrderedDict
 
 regex = re.compile("[\s\S]*.gz$")
 
@@ -75,6 +74,29 @@ def re_version(str_version):
     return new_version
 
 
+def module_yaml_path(base_path, path):
+    """匹配出module.yaml文件路径"""
+    if "module.yaml" in os.listdir(base_path):
+        old_path = base_path
+    else:
+        data = path.split(base_path)
+        if platform.system().lower() == 'windows':
+            data_list = data[1].split('\\')
+        else:
+            data_list = data[1].split('/')
+        old_path = os.path.join(base_path, data_list[1])
+    return old_path
+
+
+def deal_module_yaml_folder(old_ant_uyun_path, dcmp):
+    """获取模块名和旧包yaml中的版本号"""
+    module_yaml_folder = module_yaml_path(old_ant_uyun_path, os.path.abspath(dcmp.left))
+    old_module_yaml_path = os.path.join(module_yaml_folder, 'module.yaml')
+    current_module_version = read_yaml(old_module_yaml_path)[0]
+    module_name = read_yaml(old_module_yaml_path)[1]
+    return module_name, current_module_version
+
+
 def patch_package(output_filename, source_dir):
     """对文件夹进行打包"""
     try:
@@ -116,58 +138,31 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
     res = yaml.load(yarn_content)
     if not res:
         fw = open(yaml_path, mode='w')
-        dict1 = OrderedDict()
-        dict1["name"] = module_name
-        dict1["current_module_version"] = current_module_version
-        dict1["patched_module_version"] = patched_module_version
         data = {
             'release_time': datetime.date(year, month, day),
-            'target_modules': [{i: k} for i, k in dict1.items()]
+            'target_modules': [
+                {'a-name': module_name,
+                 'current_module_version': current_module_version,
+                 'patched_module_version': patched_module_version}
+            ],
         }
         yaml.dump(data, fw)
     else:
+        list1 = []
+        for i in res['target_modules']:
+            list1.append(i['a-name'])
         fn = open(yaml_path, 'w')
-        list1 = [i for i in res.keys()]
         if module_name not in list1:
             fn = open(yaml_path, 'w')
-            dict1 = OrderedDict()
-            dict1["name"] = module_name
-            dict1["current_module_version"] = current_module_version
-            dict1["patched_module_version"] = patched_module_version
             res['release_time'] = datetime.date(year, month, day)
-            res['target_modules'] = [{i: k} for i, k in dict1.items()]
+            res['target_modules'].append(
+                {'name': module_name,
+                 'current_module_version': current_module_version,
+                 'patched_module_version': patched_module_version
+                 }
+            )
         yaml.dump(res, fn)
     fp.close()
-
-
-def test(base_path, path):
-    if platform.system().lower() == "windows":
-        result = path.split(base_path)[1].split('\\')[1]
-        folder_path = os.path.join(base_path, result)
-    else:
-        result = path.split(base_path)[1].split('/')[1]
-        folder_path = os.path.join(base_path, result)
-    return folder_path
-
-
-def module_yaml_path(base_path, path):
-    """匹配出module.yaml文件路径"""
-    folder_path = test(base_path, path)
-    if "module.yaml" in os.listdir(folder_path):
-        old_path = folder_path
-    else:
-        result_path = test(folder_path, path)
-        old_path = result_path
-    return old_path
-
-
-def deal_module_yaml_folder(old_ant_uyun_path, dcmp):
-    """获取模块名和旧包yaml中的版本号"""
-    module_yaml_folder = module_yaml_path(old_ant_uyun_path, os.path.abspath(dcmp.left))
-    old_module_yaml_path = os.path.join(module_yaml_folder, 'module.yaml')
-    current_module_version = read_yaml(old_module_yaml_path)[0]
-    module_name = read_yaml(old_module_yaml_path)[1]
-    return module_name, current_module_version
 
 
 def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
@@ -244,4 +239,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

@@ -28,7 +28,7 @@ def untar(path, save_path):
         tar = tarfile.open(path)
         tar.extractall(save_path)
     except Exception as e:
-        print(e)
+        return
 
 
 def read_yaml(module_yaml_path):
@@ -105,7 +105,6 @@ def patch_package(output_filename, source_dir):
         # shutil.rmtree(source_dir)
         return True
     except Exception as e:
-        print(e)
         return False
 
 
@@ -146,7 +145,7 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
         data = {
             'release_time': datetime.date(year, month, day),
             'target_modules': [
-                {'a-name': module_name,
+                {'name': module_name,
                  'current_module_version': current_module_version,
                  'patched_module_version': patched_module_version}
             ],
@@ -183,15 +182,14 @@ def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
     for i in dcmp.diff_files:
         whole_path = os.path.join(dcmp.right, i)
         file_path = os.path.join(patch_path, relative_path_result)
-        print(whole_path, file_path)
-        # create_dir(file_path)
-        # shutil.copy(whole_path, file_path)
-        # try:
-        #     deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
-        #     deal_upatch(patch_path, deal_result[0], deal_result[1],
-        #                 patched_module_version)
-        # except Exception as e:
-        #     print(e)
+        create_dir(file_path)
+        shutil.copy(whole_path, file_path)
+        try:
+            deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
+            deal_upatch(patch_path, deal_result[0], deal_result[1],
+                        patched_module_version)
+        except Exception as e:
+            print(e)
 
     for sub_dcmp in dcmp.subdirs.values():
         deal_diff_file(sub_dcmp, new_ant_uyun_path, old_ant_uyun_path,
