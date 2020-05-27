@@ -1,17 +1,18 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 """
 Usage:
-  upatch.py <old_package_path> <new_package_path> -o <output>  [-i <ignore> <ignore> <ignore> <ignore>]
-  upatch.py (-h | --help)
-  upatch.py (-v | --version)
+  upatch.py <old_package_path> <new_package_path> -o <output> [-i <ignore>...] [options]
 
 Options:
-  -h, --help             显示帮助信息
-  -i, --ignore  忽略目录或文件（可选，忽略的目录或文件不会放入补丁包中）
+  -d description --description=description  message,
 """
+import json
 import os
 import re
+
+import chardet
 import yaml
+import copy
 import shutil
 import filecmp
 import tarfile
@@ -205,7 +206,32 @@ def deal_folder(path):
         os.mkdir(path)
 
 
-def deal_file(old_package_path, new_package_path, new_version, ignore_maps):
+def write_patch(path, description):
+    coding = chardet.detect(description)["encoding"]
+    content = description.decode(coding).encode('utf8')
+    if description is not None:
+        result = content.split(";")
+        for i in result:
+            fp = open(path, mode="r")
+            yarn_content = fp.read()
+            res = yaml.load(yarn_content)
+            print(res)
+
+            if "description" in res.keys():
+                fw = open(path, mode="w")
+                new_res = copy.deepcopy(res)
+                new_res["description"].append(i)
+                res.clear()
+                yaml.safe_dump(new_res, fw, default_flow_style=False, encoding="utf-8", allow_unicode=True)
+                fw.close()
+            else:
+                fn = open(path, "a")
+                data = {"description": [i]}
+                yaml.safe_dump(data, fn, default_flow_style=False, encoding="utf-8", allow_unicode=True)
+                fn.close()
+
+
+def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description):
     """获取处理压缩包"""
     patch_path = os.path.join(os.getcwd(), 'patch')
     old_folders = os.path.join(os.getcwd(), 'old_folders')
@@ -220,6 +246,8 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_maps):
         dcmp = filecmp.dircmp(old_ant_uyun_path, new_ant_uyun_path)
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
+        path = os.path.join(patch_path, "patch.yaml")
+        write_patch(path, description)
         patch_package('patch', patch_path)
     except Exception as e:
         print(e)
@@ -232,6 +260,7 @@ def main():
     output = args['<output>']
     new_version = re_version(output)
     ignore_list = args['<ignore>']
+    description = args["--description"]
     ignore_maps = {}
     for ignore in ignore_list:
         if os.path.dirname(ignore) in ignore_maps:
@@ -239,7 +268,7 @@ def main():
                 ignore_maps[os.path.dirname(ignore)].append(os.path.basename(ignore))
         else:
             ignore_maps[os.path.dirname(ignore)] = [os.path.basename(ignore)]
-    deal_file(old_package_path, new_package_path, new_version, ignore_maps)
+    deal_file(old_package_path, new_package_path, new_version, ignore_maps, description)
 
 
 if __name__ == '__main__':

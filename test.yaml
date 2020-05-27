@@ -1,0 +1,8 @@
+description:
+- 自动发现后端服务模块
+- Discovery Server
+release_time: 2020-05-27
+target_modules:
+- name: discovery-web
+- current_module_version: 2.0.16.41
+- patched_module_version: 2.0.18.47

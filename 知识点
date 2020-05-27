@@ -5,8 +5,5 @@ python upatch.py C:\Users\jife\Desktop\uyun\UYUN-Platform-Ant-V2.0.R16.41-all.ta
 python upatch.py C:\Users\jife\Desktop\uyun\modulepackage\discovery-server.tar.gz  C:\Users\jife\Desktop\uyun\modulepackage\discovery-server-2.0.R16.42.tar.gz -o UYUN-Platform-Ant-V2.0.R16.42-all.tar.gz
 
 
-python upatch.py  C:\Users\jife\Desktop\uyun\allpackage\UYUN-Discovery-V2.0.R16.41-all-83.tar.gz   C:\Users\jife\Desktop\uyun\allpackage\UYUN-Discovery-V2.0.R16.43-all-89.tar.gz  -o UYUN-Platform-Ant-V2.0.R18.47-all.tar.gz
+python upatch.py  C:\Users\jife\Desktop\uyun\allpackage\UYUN-Discovery-V2.0.R16.41-all-83.tar.gz   C:\Users\jife\Desktop\uyun\allpackage\UYUN-Discovery-V2.0.R16.43-all-89.tar.gz  -o UYUN-Platform-Ant-V2.0.R18.47-all.tar.gz  -d 自动发现后端服务模块;Discovery Server
 python upatch.py  /home/MyProject/Upatch-tool/UYUN-Discovery-V2.0.R16.41-all-83.tar.gz   /home/MyProject/Upatch-tool/UYUN-Discovery-V2.0.R16.43-all-89.tar.gz  -o UYUN-Platform-Ant-V2.0.R18.47-all.tar.gz
-
-
-https://www.djangosites.org/

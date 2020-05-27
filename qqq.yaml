@@ -1,5 +1,0 @@
-release_time: 2020-05-25
-target_modules:
-- name: test
-- current_module_version: 4-1-9
-- patched_module_version: 5-6-123213123
