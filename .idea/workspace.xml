@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b66310-df77-4360-8195-33a50114e7f5" name="Default" comment="cls">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.yaml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zace.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zx.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qqq.yaml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/zz.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upatch1.0.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upatch2.0.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/z_linux.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/z_train_upatch.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zace.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zx.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upatch.py" afterPath="$PROJECT_DIR$/upatch.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/知识点" afterPath="$PROJECT_DIR$/知识点" />
@@ -53,42 +54,10 @@
       <file leaf-file-name="upatch.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/upatch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="275" column="0" lean-forward="true" selection-start-line="274" selection-start-column="10" selection-end-line="275" selection-end-column="0" />
+            <state relative-caret-position="371">
+              <caret line="275" column="0" lean-forward="true" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
               <folding>
                 <element signature="e#191#202#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zx.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zx.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="19" column="55" lean-forward="false" selection-start-line="18" selection-start-column="3" selection-end-line="19" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zace.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zace.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-391">
-              <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-              <folding>
-                <element signature="e#16#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,6 +101,8 @@
       <find>open</find>
       <find>re_module_yaml_path</find>
       <find>a-name</find>
+      <find>yaml</find>
+      <find>read_yaml</find>
       <find>print</find>
     </findStrings>
   </component>
@@ -143,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/old-ant-uyun/platform-ant-dispatcher/config/logback-spring.xml" />
         <option value="$PROJECT_DIR$/new-ant-uyun/platform-ant-dispatcher/module.yaml" />
         <option value="$PROJECT_DIR$/new-ant-uyun/platform-ant-dispatcher/qqqq.py" />
         <option value="$PROJECT_DIR$/patch/patch1.yaml" />
@@ -153,7 +123,6 @@
         <option value="$PROJECT_DIR$/q.py" />
         <option value="$PROJECT_DIR$/new_uyun/platform-ant-executor/install.sh" />
         <option value="$PROJECT_DIR$/new_uyun/platform-ant-dispatcher/bin/platform-ant-dispatcher.sh" />
-        <option value="$PROJECT_DIR$/patch/patch.yaml" />
         <option value="$PROJECT_DIR$/train_docopt.py" />
         <option value="$PROJECT_DIR$/class_upatch.py" />
         <option value="$PROJECT_DIR$/new_uyun/platform-ant-dispatcher/eeee.py" />
@@ -187,13 +156,15 @@
         <option value="$PROJECT_DIR$/upatch2.0.py" />
         <option value="$PROJECT_DIR$/qqq.yaml" />
         <option value="$PROJECT_DIR$/zzzz.py" />
-        <option value="$PROJECT_DIR$/知识点" />
         <option value="$PROJECT_DIR$/ca.py" />
         <option value="$PROJECT_DIR$/zz.py" />
         <option value="$PROJECT_DIR$/zace.py" />
         <option value="$PROJECT_DIR$/test.yaml" />
         <option value="$PROJECT_DIR$/zx.py" />
+        <option value="$PROJECT_DIR$/linux.py" />
         <option value="$PROJECT_DIR$/upatch.py" />
+        <option value="$PROJECT_DIR$/知识点" />
+        <option value="$PROJECT_DIR$/patch/patch.yaml" />
       </list>
     </option>
   </component>
@@ -401,14 +372,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3369803" sideWeight="0.50213677" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31728664" sideWeight="0.49358973" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.404814" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4037199" sideWeight="0.49786323" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14903846" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39715537" sideWeight="0.49786323" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23450854" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -454,20 +426,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/-1603950974/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-669">
-          <caret line="371" column="42" lean-forward="false" selection-start-line="371" selection-start-column="42" selection-end-line="371" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/python36/Lib/runpy.py" />
-    <entry file="file://E:/python36/djando-env/Lib/site-packages/_pytest/config/findpaths.py" />
     <entry file="file://E:/python36/djando-env/Lib/site-packages/py/_vendored_packages/iniconfig.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt" />
     <entry file="file://$PROJECT_DIR$/testing/testuntar/patch.tar.gz">
@@ -555,13 +518,6 @@
     <entry file="file://$PROJECT_DIR$/old_discovery-server/deepscan/application/javaapp.bdp" />
     <entry file="file://$USER_HOME$/Desktop/store_api.py" />
     <entry file="file://$PROJECT_DIR$/new_discovery-server/deepscan/application/javaapp.bdp" />
-    <entry file="file://$PROJECT_DIR$/z_train_upatch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/patch.tar.gz" />
     <entry file="file://$USER_HOME$/Downloads/store_api.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -620,14 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/知识点">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/269099107/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -656,27 +604,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-798">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#277#286#0" expanded="false" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old_folders/discovery-server/module.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/z_linux.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="129" column="34" lean-forward="true" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
+        <state relative-caret-position="-4389">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/z_train_upatch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4804">
+          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zace.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
+        <state relative-caret-position="-388">
           <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding>
-            <element signature="e#16#27#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="19" column="55" lean-forward="false" selection-start-line="18" selection-start-column="3" selection-end-line="19" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/patch/uyun-discovery/discovery-web/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -688,26 +664,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zx.py">
+    <entry file="file://$PROJECT_DIR$/知识点">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="19" column="55" lean-forward="false" selection-start-line="18" selection-start-column="3" selection-end-line="19" selection-end-column="55" />
+        <state relative-caret-position="124">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/linux.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/patch/patch.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="63">
+          <caret line="3" column="2" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/upatch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="275" column="0" lean-forward="true" selection-start-line="274" selection-start-column="10" selection-end-line="275" selection-end-column="0" />
+        <state relative-caret-position="371">
+          <caret line="275" column="0" lean-forward="true" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
           <folding>
             <element signature="e#191#202#0" expanded="true" />
           </folding>

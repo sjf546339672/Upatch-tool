@@ -207,28 +207,28 @@ def deal_folder(path):
 
 
 def write_patch(path, description):
-    coding = chardet.detect(description)["encoding"]
-    content = description.decode(coding).encode('utf8')
     if description is not None:
-        result = content.split(";")
-        for i in result:
-            fp = open(path, mode="r")
-            yarn_content = fp.read()
-            res = yaml.load(yarn_content)
-            print(res)
+        if len(description) != 0:
+            coding = chardet.detect(description)["encoding"]
+            content = description.decode(coding).encode('utf8')
+            result = content.split(";")
+            for i in result:
+                fp = open(path, mode="r")
+                yarn_content = fp.read()
+                res = yaml.load(yarn_content)
 
-            if "description" in res.keys():
-                fw = open(path, mode="w")
-                new_res = copy.deepcopy(res)
-                new_res["description"].append(i)
-                res.clear()
-                yaml.safe_dump(new_res, fw, default_flow_style=False, encoding="utf-8", allow_unicode=True)
-                fw.close()
-            else:
-                fn = open(path, "a")
-                data = {"description": [i]}
-                yaml.safe_dump(data, fn, default_flow_style=False, encoding="utf-8", allow_unicode=True)
-                fn.close()
+                if "description" in res.keys():
+                    fw = open(path, mode="w")
+                    new_res = copy.deepcopy(res)
+                    new_res["description"].append(i)
+                    res.clear()
+                    yaml.safe_dump(new_res, fw, default_flow_style=False, encoding="utf-8", allow_unicode=True)
+                    fw.close()
+                else:
+                    fn = open(path, "a")
+                    data = {"description": [i]}
+                    yaml.safe_dump(data, fn, default_flow_style=False, encoding="utf-8", allow_unicode=True)
+                    fn.close()
 
 
 def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description):
@@ -273,4 +273,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
