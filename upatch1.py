@@ -9,7 +9,6 @@ Options:
 import json
 import os
 import re
-import stat
 
 import chardet
 import yaml
@@ -32,13 +31,6 @@ def untar(path, save_path):
         tar.extractall(save_path)
     except Exception as e:
         print(e)
-
-
-def get_package_name(tar_package_name):
-    """获取包名"""
-    pattern = r"-([\w\W]+)(-V)"
-    package_name = re.findall(pattern, tar_package_name)[0][0].lower()
-    return package_name
 
 
 def read_yaml(module_yaml_path):
@@ -112,7 +104,6 @@ def get_all_files(package_path, save_path):
 
 def deal_upatch(patch_path, module_name, current_module_version, patched_module_version):
     """向patch.yaml文件中添加数据"""
-    print(patch_path, module_name, current_module_version, patched_module_version)
     yaml_path = os.path.join(patch_path, 'patch.yaml')
     year = datetime.datetime.now().year
     month = datetime.datetime.now().month
@@ -135,33 +126,19 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
             'target_modules': [{i: k} for i, k in dict1.items()]
         }
         yaml.dump(data, fw)
-        fw.close()
     else:
-        print(2222)
-    # if not res:
-    #     fw = open(yaml_path, mode='w')
-    #     dict1 = OrderedDict()
-    #     dict1["name"] = module_name
-    #     dict1["current_module_version"] = current_module_version
-    #     dict1["patched_module_version"] = patched_module_version
-    #     data = {
-    #         'release_time': datetime.date(year, month, day),
-    #         'target_modules': [{i: k} for i, k in dict1.items()]
-    #     }
-    #     yaml.dump(data, fw)
-    # else:
-    #     fn = open(yaml_path, 'w')
-    #     list1 = [i for i in res.keys()]
-    #     if module_name not in list1:
-    #         fn = open(yaml_path, 'w')
-    #         dict1 = OrderedDict()
-    #         dict1["name"] = module_name
-    #         dict1["current_module_version"] = current_module_version
-    #         dict1["patched_module_version"] = patched_module_version
-    #         res['release_time'] = datetime.date(year, month, day)
-    #         res['target_modules'] = [{i: k} for i, k in dict1.items()]
-    #     yaml.dump(res, fn)
-    # fp.close()
+        fn = open(yaml_path, 'w')
+        list1 = [i for i in res.keys()]
+        if module_name not in list1:
+            fn = open(yaml_path, 'w')
+            dict1 = OrderedDict()
+            dict1["name"] = module_name
+            dict1["current_module_version"] = current_module_version
+            dict1["patched_module_version"] = patched_module_version
+            res['release_time'] = datetime.date(year, month, day)
+            res['target_modules'] = [{i: k} for i, k in dict1.items()]
+        yaml.dump(res, fn)
+    fp.close()
 
 
 def test(base_path, path):
@@ -172,14 +149,6 @@ def test(base_path, path):
         result = path.split(base_path)[1].split('/')[1]
         folder_path = os.path.join(base_path, result)
     return folder_path
-
-
-def get_folder_name(path_str):
-    if platform.system().lower() == "windows":
-        result = path_str.split('\\')
-    else:
-        result = path_str.split('/')
-    return result
 
 
 def module_yaml_path(base_path, path):
@@ -202,11 +171,6 @@ def deal_module_yaml_folder(old_ant_uyun_path, dcmp):
     return module_name, current_module_version
 
 
-def get_dir_allfile(file_dir):
-    for root, dirs, files in os.walk(file_dir):
-        return files
-
-
 def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
                    patched_module_version, ignore_maps):
     """旧包文件和新包文件进行比较"""
@@ -219,18 +183,13 @@ def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
     dcmp.diff_files += dcmp.right_only
     for i in dcmp.diff_files:
         whole_path = os.path.join(dcmp.right, i)
-        old_yaml_dir = os.path.join(old_ant_uyun_path, get_folder_name(relative_path_result)[0])
-
-        if 'module.yaml' in get_dir_allfile(old_yaml_dir):
-            file_path = os.path.join(patch_path, relative_path_result)
-        else:
-            file_path = os.path.join(patch_path, get_folder_name(relative_path_result)[1])
-
+        file_path = os.path.join(patch_path, relative_path_result)
         create_dir(file_path)
         shutil.copy(whole_path, file_path)
         try:
             deal_result = deal_module_yaml_folder(old_ant_uyun_path, dcmp)
-            deal_upatch(patch_path, deal_result[0], deal_result[1], patched_module_version)
+            deal_upatch(patch_path, deal_result[0], deal_result[1],
+                        patched_module_version)
         except Exception as e:
             print(e)
 
@@ -240,12 +199,11 @@ def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
 
 
 def deal_folder(path):
-    if os.path.exists(path):
-        for fileList in os.walk(path):
-            for name in fileList[2]:
-                os.chmod(os.path.join(fileList[0], name), stat.S_IWRITE)
-                os.remove(os.path.join(fileList[0], name))
+    if not os.path.exists(path):
+        os.mkdir(path)
+    else:
         shutil.rmtree(path)
+        os.mkdir(path)
 
 
 def write_patch(path, description):
@@ -273,9 +231,9 @@ def write_patch(path, description):
                     fn.close()
 
 
-def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name):
+def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description):
     """获取处理压缩包"""
-    patch_path = os.path.join(os.getcwd(), package_name)
+    patch_path = os.path.join(os.getcwd(), 'patch')
     old_folders = os.path.join(os.getcwd(), 'old_folders')
     new_folders = os.path.join(os.getcwd(), 'new_folders')
     deal_folder(patch_path)
@@ -289,8 +247,8 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_maps, desc
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
         path = os.path.join(patch_path, "patch.yaml")
-        # write_patch(path, description)
-        # patch_package('patch', patch_path)
+        write_patch(path, description)
+        patch_package('patch', patch_path)
     except Exception as e:
         print(e)
 
@@ -301,7 +259,6 @@ def main():
     new_package_path = args['<new_package_path>']
     output = args['<output>']
     new_version = re_version(output)
-    package_name = get_package_name(output)
     ignore_list = args['<ignore>']
     description = args["--description"]
     ignore_maps = {}
@@ -311,46 +268,8 @@ def main():
                 ignore_maps[os.path.dirname(ignore)].append(os.path.basename(ignore))
         else:
             ignore_maps[os.path.dirname(ignore)] = [os.path.basename(ignore)]
-    deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name)
+    deal_file(old_package_path, new_package_path, new_version, ignore_maps, description)
 
 
 if __name__ == '__main__':
     main()
-
-
-
-"""
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-server')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\js')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\js')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\js')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\css')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\locales')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\locales')
-
-
-
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\storage\\raid\\svc')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\application')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\computer')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-"""

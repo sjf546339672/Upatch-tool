@@ -1,0 +1,5 @@
+release_time: 2020-06-19
+target_modules:
+- current_module_version: '1111111'
+  name: '1111111'
+  patched_module_version: '1111111'
