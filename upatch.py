@@ -112,56 +112,38 @@ def get_all_files(package_path, save_path):
 
 def deal_upatch(patch_path, module_name, current_module_version, patched_module_version):
     """向patch.yaml文件中添加数据"""
-    print(patch_path, module_name, current_module_version, patched_module_version)
     yaml_path = os.path.join(patch_path, 'patch.yaml')
     year = datetime.datetime.now().year
     month = datetime.datetime.now().month
     day = datetime.datetime.now().day
-
+    release_time = datetime.date(year, month, day)
+    from ruamel.yaml import YAML
+    yaml = YAML()
     if not os.path.exists(yaml_path):
-        fd = open(yaml_path, mode="w")
-        fd.close()
-    fp = open(yaml_path, mode="r")
-    yarn_content = fp.read()
-    res = yaml.load(yarn_content)
-    if not res:
-        fw = open(yaml_path, mode='w')
-        dict1 = OrderedDict()
-        dict1["name"] = module_name
-        dict1["current_module_version"] = current_module_version
-        dict1["patched_module_version"] = patched_module_version
-        data = {
-            'release_time': datetime.date(year, month, day),
-            'target_modules': [{i: k} for i, k in dict1.items()]
-        }
-        yaml.dump(data, fw)
-        fw.close()
+        yaml_doc = """
+        release_time: {}
+        target_modules:
+          - name: {}
+            current_module_version: {}
+            patched_module_version: {}
+        """.format(release_time, module_name, current_module_version, patched_module_version)
+        data = yaml.load(yaml_doc)
+        with open(yaml_path, 'w') as fp:
+            yaml.dump(data, fp)
     else:
-        print(2222)
-    # if not res:
-    #     fw = open(yaml_path, mode='w')
-    #     dict1 = OrderedDict()
-    #     dict1["name"] = module_name
-    #     dict1["current_module_version"] = current_module_version
-    #     dict1["patched_module_version"] = patched_module_version
-    #     data = {
-    #         'release_time': datetime.date(year, month, day),
-    #         'target_modules': [{i: k} for i, k in dict1.items()]
-    #     }
-    #     yaml.dump(data, fw)
-    # else:
-    #     fn = open(yaml_path, 'w')
-    #     list1 = [i for i in res.keys()]
-    #     if module_name not in list1:
-    #         fn = open(yaml_path, 'w')
-    #         dict1 = OrderedDict()
-    #         dict1["name"] = module_name
-    #         dict1["current_module_version"] = current_module_version
-    #         dict1["patched_module_version"] = patched_module_version
-    #         res['release_time'] = datetime.date(year, month, day)
-    #         res['target_modules'] = [{i: k} for i, k in dict1.items()]
-    #     yaml.dump(res, fn)
-    # fp.close()
+        import ruamel.yaml
+        with open(yaml_path, 'r') as ft:
+            all_data = ruamel.yaml.safe_load(ft)
+            list_name = []
+            for i in all_data['target_modules']:
+                list_name.append(i['name'])
+            print(list_name)
+            if module_name not in list_name:
+                all_data['target_modules'].append(
+                    {"name": module_name, "current_module_version": current_module_version,
+                     "patched_module_version": patched_module_version})
+                with open(yaml_path, 'w') as fm:
+                    yaml.dump(all_data, fm)
 
 
 def test(base_path, path):
@@ -317,40 +299,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-
-"""
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-server')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\js')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\js')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\js')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\css')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\locales')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'uyun-discovery\\discovery-web\\html\\static\\locales')
-
-
-
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\storage\\raid\\svc')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\application')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\deepscan\\computer')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-('E:\\Uyun-python\\Upatch-tool\\patch', '==', 'discovery-server\\script-lib')
-"""

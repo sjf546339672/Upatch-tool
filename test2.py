@@ -1,8 +1,6 @@
 # coding: utf-8
 import datetime
 
-from ruamel.yaml.compat import ordereddict
-
 year = datetime.datetime.now().year
 month = datetime.datetime.now().month
 day = datetime.datetime.now().day
@@ -42,12 +40,8 @@ else:
             for i in all_data['target_modules']:
                 list_name.append(i['name'])
             if module_name not in list_name:
-                record_to_add_2 = dict(
-                    name=module_name,
-                    current_module_version=current_module_version,
-                    patched_module_version=patched_module_version
-                )
-                all_data['target_modules'].append(record_to_add_2)
+                all_data['target_modules'].append({"name": module_name, "current_module_version": current_module_version, "patched_module_version": patched_module_version})
+                print(all_data)
                 with open(yaml_path, 'w') as fm:
                     yaml.dump(all_data, fm)
 
