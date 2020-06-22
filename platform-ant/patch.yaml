@@ -1,8 +1,0 @@
-release_time: 2020-06-20
-target_modules:
-- patched_module_version: 111
-  name: 111
-  current_module_version: 111
-- patched_module_version: '1111111111111'
-  current_module_version: '1111111111111'
-  name: discovery-web

@@ -273,3 +273,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+"""
+-i uyun-discovery\discovery-web\html\index.html  uyun-discovery\discovery-web\html\static\css  uyun-discovery\discovery-web\html\static\js
+"""

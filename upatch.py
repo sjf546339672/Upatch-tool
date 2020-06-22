@@ -20,7 +20,6 @@ import tarfile
 import datetime
 import platform
 from docopt import docopt
-from collections import OrderedDict
 
 regex = re.compile("[\s\S]*.gz$")
 
@@ -137,7 +136,6 @@ def deal_upatch(patch_path, module_name, current_module_version, patched_module_
             list_name = []
             for i in all_data['target_modules']:
                 list_name.append(i['name'])
-            print(list_name)
             if module_name not in list_name:
                 all_data['target_modules'].append(
                     {"name": module_name, "current_module_version": current_module_version,
@@ -162,7 +160,6 @@ def get_folder_name(path_str):
     else:
         result = path_str.split('/')
     return result
-
 
 def module_yaml_path(base_path, path):
     """匹配出module.yaml文件路径"""
@@ -202,12 +199,22 @@ def deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path, patch_path,
     for i in dcmp.diff_files:
         whole_path = os.path.join(dcmp.right, i)
         old_yaml_dir = os.path.join(old_ant_uyun_path, get_folder_name(relative_path_result)[0])
-
         if 'module.yaml' in get_dir_allfile(old_yaml_dir):
-            file_path = os.path.join(patch_path, relative_path_result)
+            get_path = os.path.join(patch_path, relative_path_result)
+            test = dcmp.right.split(new_ant_uyun_path)[1]
+            test1 = test.split(relative_path_result)
+            if test1[1] == "":
+                file_path = get_path
+            else:
+                file_path = get_path + test1[1]
         else:
-            file_path = os.path.join(patch_path, get_folder_name(relative_path_result)[1])
-
+            get_path = os.path.join(patch_path, get_folder_name(relative_path_result)[1])
+            test = dcmp.right.split(new_ant_uyun_path)[1]
+            test1 = test.split(get_folder_name(relative_path_result)[1])
+            if test1[1] == "":
+                file_path = get_path
+            else:
+                file_path = get_path + test1[1]
         create_dir(file_path)
         shutil.copy(whole_path, file_path)
         try:
@@ -235,7 +242,11 @@ def write_patch(path, description):
         if len(description) != 0:
             coding = chardet.detect(description)["encoding"]
             content = description.decode(coding).encode('utf8')
-            result = content.split(";")
+            get_result = content.split(";")
+            str1 = ''.join(get_result[1:])
+            result = []
+            result.append(get_result[0])
+            result.append(str1)
             for i in result:
                 fp = open(path, mode="r")
                 yarn_content = fp.read()
@@ -271,8 +282,8 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_maps, desc
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
         path = os.path.join(patch_path, "patch.yaml")
-        # write_patch(path, description)
-        # patch_package('patch', patch_path)
+        write_patch(path, description)
+        patch_package('patch', patch_path)
     except Exception as e:
         print(e)
 

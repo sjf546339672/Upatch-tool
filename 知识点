@@ -29,9 +29,7 @@ python upatch.py  C:\Users\jife\Desktop\uyun\modulepackage\discovery-server.tar.
 
 
 
-
-
-
-
 python upatch.py  C:\Users\jife\Desktop\uyun\allpackage\UYUN-Discovery-V2.0.R16.41-all-83.tar.gz   C:\Users\jife\Desktop\uyun\allpackage\UYUN-Discovery-V2.0.R16.43-all-89.tar.gz  -o UYUN-Platform-Ant-V2.0.R18.47-all.tar.gz
 
+
+-i  discovery-server\script-lib discovery-server\lib\ant-api-util-1.0.0.jar
