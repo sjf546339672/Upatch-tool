@@ -19,6 +19,8 @@ import filecmp
 import tarfile
 import datetime
 import platform
+import subprocess
+from subprocess import Popen
 from docopt import docopt
 
 regex = re.compile("[\s\S]*.gz$")
@@ -85,14 +87,23 @@ def re_version(str_version):
 
 def patch_package(output_filename, source_dir):
     """对文件夹进行打包"""
+    output_filename = output_filename + '.tar.gz'
+    get_cwd = os.getcwd()
+    list1 = []
+    file_list = os.listdir(source_dir)
+    for item in file_list:
+        list1.append(item)
+    result = ' '.join(list1)
+    cmd = "tar czvf {} {}".format(output_filename, result)
+    output_filename_path = os.path.join(source_dir, output_filename)
     try:
-        with tarfile.open(output_filename + '.tar.gz', "w:gz") as tar:
-            tar.add(source_dir, arcname=os.path.basename(source_dir))
-        # shutil.rmtree(source_dir)
-        return True
+        pg = Popen("cd {} && {}".format(source_dir, cmd),
+                   stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                   shell=True)
+        buff, buffErr = pg.communicate()
+        shutil.move(output_filename_path, get_cwd)
     except Exception as e:
-        print(e)
-        return False
+        print (e)
 
 
 def get_untar_name(old_list, new_list):
@@ -160,6 +171,7 @@ def get_folder_name(path_str):
     else:
         result = path_str.split('/')
     return result
+
 
 def module_yaml_path(base_path, path):
     """匹配出module.yaml文件路径"""
@@ -242,31 +254,34 @@ def write_patch(path, description):
         if len(description) != 0:
             coding = chardet.detect(description)["encoding"]
             content = description.decode(coding).encode('utf8')
-            get_result = content.split(";")
-            str1 = ''.join(get_result[1:])
-            result = []
-            result.append(get_result[0])
-            result.append(str1)
-            for i in result:
-                fp = open(path, mode="r")
-                yarn_content = fp.read()
-                res = yaml.load(yarn_content)
+            result = content.split(";")
+            if len(result) < 3:
+                for i in result:
+                    fp = open(path, mode="r")
+                    yarn_content = fp.read()
+                    res = yaml.load(yarn_content)
 
-                if "description" in res.keys():
-                    fw = open(path, mode="w")
-                    new_res = copy.deepcopy(res)
-                    new_res["description"].append(i)
-                    res.clear()
-                    yaml.safe_dump(new_res, fw, default_flow_style=False, encoding="utf-8", allow_unicode=True)
-                    fw.close()
-                else:
-                    fn = open(path, "a")
-                    data = {"description": [i]}
-                    yaml.safe_dump(data, fn, default_flow_style=False, encoding="utf-8", allow_unicode=True)
-                    fn.close()
+                    if "description" in res.keys():
+                        fw = open(path, mode="w")
+                        new_res = copy.deepcopy(res)
+                        new_res["description"].append(i)
+                        res.clear()
+                        yaml.safe_dump(new_res, fw, default_flow_style=False, encoding="utf-8", allow_unicode=True)
+                        fw.close()
+                    else:
+                        fn = open(path, "a")
+                        data = {"description": [i]}
+                        yaml.safe_dump(data, fn, default_flow_style=False, encoding="utf-8", allow_unicode=True)
+                        fn.close()
+                    return True
+            else:
+                print("error: Does not conform to the description information format")
+                return False
+    else:
+        return True
 
 
-def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name):
+def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name, tar_name):
     """获取处理压缩包"""
     patch_path = os.path.join(os.getcwd(), package_name)
     old_folders = os.path.join(os.getcwd(), 'old_folders')
@@ -282,10 +297,21 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_maps, desc
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
         path = os.path.join(patch_path, "patch.yaml")
-        write_patch(path, description)
-        patch_package('patch', patch_path)
+        get_write_result = write_patch(path, description)
+        if get_write_result is True:
+            if os.path.exists(patch_path):
+               patch_package(tar_name, patch_path)
+            else:
+                print("error: The content has not changed")
     except Exception as e:
         print(e)
+
+
+def get_tar_name(output):
+    regex = r"([\w\W]+)-"
+    result = re.findall(regex, output)
+    result = result[0] + '-patch'
+    return result
 
 
 def main():
@@ -295,6 +321,7 @@ def main():
     output = args['<output>']
     new_version = re_version(output)
     package_name = get_package_name(output)
+    tar_name = get_tar_name(output)
     ignore_list = args['<ignore>']
     description = args["--description"]
     ignore_maps = {}
@@ -304,7 +331,7 @@ def main():
                 ignore_maps[os.path.dirname(ignore)].append(os.path.basename(ignore))
         else:
             ignore_maps[os.path.dirname(ignore)] = [os.path.basename(ignore)]
-    deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name)
+    deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name, tar_name)
 
 
 if __name__ == '__main__':
