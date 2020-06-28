@@ -247,6 +247,9 @@ def deal_folder(path):
                 os.chmod(os.path.join(fileList[0], name), stat.S_IWRITE)
                 os.remove(os.path.join(fileList[0], name))
         shutil.rmtree(path)
+        create_dir(path)
+    else:
+        create_dir(path)
 
 
 def write_patch(path, description):
@@ -273,12 +276,9 @@ def write_patch(path, description):
                         data = {"description": [i]}
                         yaml.safe_dump(data, fn, default_flow_style=False, encoding="utf-8", allow_unicode=True)
                         fn.close()
-                    return True
             else:
                 print("error: Does not conform to the description information format")
                 return False
-    else:
-        return True
 
 
 def deal_file(old_package_path, new_package_path, new_version, ignore_maps, description, package_name, tar_name):
@@ -297,12 +297,21 @@ def deal_file(old_package_path, new_package_path, new_version, ignore_maps, desc
         deal_diff_file(dcmp, new_ant_uyun_path, old_ant_uyun_path,
                        patch_path, new_version, ignore_maps)
         path = os.path.join(patch_path, "patch.yaml")
-        get_write_result = write_patch(path, description)
-        if get_write_result is True:
-            if os.path.exists(patch_path):
-               patch_package(tar_name, patch_path)
+        if description is not None:
+            if os.path.exists(path):
+                result = write_patch(path, description)
+                if result is not False:
+                    if os.path.exists(path):
+                        patch_package(tar_name, patch_path)
+                    else:
+                        print("The content has not changed")
             else:
-                print("error: The content has not changed")
+                print("The content has not changed")
+        else:
+            if os.path.exists(path):
+                patch_package(tar_name, patch_path)
+            else:
+                print("The content has not changed")
     except Exception as e:
         print(e)
 
